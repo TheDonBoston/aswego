@@ -19,10 +19,17 @@ if random_word in hints:
     print(f"Here's a hint: {hints[random_word]}")
 
 while lives > 0:
-    print("Welcome to Spenser's word guessing game!")
+    print("The word has six letters!")
     input_string = input("Your guess: \n")
+
+
+    if input_string not in random_word:
+        lives -= 1
 
     if input_string in random_word:
         print(f"({input_string}) is a letter in the word.")
     else:
-        print(f"({input_string}) is not a letter in the word.")
+        print(f"({input_string}) is not a letter in the word. Lives left: {lives}")
+
+else:
+    print("Out of guesses. The word was:", random_word)
