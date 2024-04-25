@@ -6,6 +6,7 @@ random_word = random.choice(words)
 input_string = ""
 letters = set()
 lives = 6
+play_again = True
 hints = {
     "bladee": "A popular music artist from Sweden, a drainer, one might say.",
     "coffee": "A popular drink that stimulates the mind, and is dark in color.",
@@ -20,6 +21,9 @@ if random_word in hints:
 
 while lives > 0:
     print("The word has six letters!")
+    secret_word = "".join(char if char in letters else "_" for char in random_word)
+    print("Secret word:", secret_word)
+    
     input_string = input("Your guess: \n")
 
 
@@ -27,7 +31,12 @@ while lives > 0:
         lives -= 1
 
     if input_string in random_word:
+        letters.add(input_string)
         print(f"({input_string}) is a letter in the word.")
+
+    if secret_word == random_word:
+        print("You win!!")
+
     else:
         print(f"({input_string}) is not a letter in the word. Lives left: {lives}")
 
