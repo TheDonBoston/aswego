@@ -11,7 +11,7 @@ hints = {
     "coffee": "A popular drink that stimulates the mind, and is dark in color.",
     "orange": "A color, a fruit, and only Eminem can use it to rhyme.",
     "python": "A programming language that you may be familiar with.",
-    "potato": "A yummy startch that grows in the ground.",
+    "potato": "A yummy starch that grows in the ground.",
     "zombie": "A non-vampire undead creature that bites humans."
 }
 
