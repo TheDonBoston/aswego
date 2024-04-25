@@ -26,9 +26,9 @@ while lives > 0:
     
     input_string = input("Your guess: \n")
 
-
     if input_string not in random_word:
         lives -= 1
+        print(f"({input_string}) is not a letter in the word. Lives left: {lives}")
 
     if input_string in random_word:
         letters.add(input_string)
@@ -37,8 +37,6 @@ while lives > 0:
     if secret_word == random_word:
         print("You win!!")
 
-    else:
-        print(f"({input_string}) is not a letter in the word. Lives left: {lives}")
-
+        
 else:
     print("Out of guesses. The word was:", random_word)
