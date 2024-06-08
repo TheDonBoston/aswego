@@ -1,0 +1,83 @@
+# Class for created players which saves two stats: at bats and hits respectively
+# We define the class first because the function of the game will need to call it
+
+class Player:
+    def __init__ (self, name, position):
+        """Call a player and their position."""
+        self.name = name
+        self.position = position
+        # H = Hits and AB = at bats
+        self.stats = {"H": 0, "AB": 0}
+
+    def save_ab(self):
+        """At bats go up, regardless of a hit or an out!"""
+        self.stats["AB"] += 1
+
+    def save_hit(self):
+        """Counts both the hit and the at bat itself!"""
+        self.stats["H"] += 1
+        self.stats["AB"] += 1
+    
+    def __str__(self):
+        """Shows the players name, their position, and their stats."""
+        return f"Player: {self.name}, Position: {self.position}, Stats: {self.stats}"
+    
+import random
+
+class Game:
+    def __init__(self):
+        """Calls the game and the player."""
+        self.player = None
+
+    def create_your_player(self):
+        """Asks the user to make a player using name and position!"""
+        name = input("Enter your player's name: ")
+        position = input("Enter your player's position: ")
+        self.player = Player(name, position)
+        print(f"Player created: {self.player}")
+
+    def AB(self):
+        """Simulates a real at bat in baseball!"""
+        result = random.choice(["hit", "out"])
+        if result == "hit":
+            # Here we call the save_hit and save_ab functions to record the players actions
+            self.player.save_hit()
+            print(f"{self.player.name} got a hit!")
+        else:
+            self.player.save_ab()
+            print(f"{self.player.name} is out!")
+        # Regardless of the outcome, print the players stats after the at bat
+        print(f"Current stats: {self.player.stats}")
+
+    def view_player_stats(self):
+        """See your player's up-to-date statistics!"""
+        if self.player:
+            print(self.player)
+        else:
+            print("No player created!  Make it happen user!")
+
+    def rungame(self):
+        """This runs the game program. We used 'rungame' due
+        to the fact that a 'run' in baseball is
+        a score.
+        It will ask the user to choose option 1, 2, or 3."""
+
+        while True:
+            print("1.) Start Game!")
+            print("2.) View Player Stats")
+            print("3.) Exit")
+            choice = input("Choose an option number: ")
+            if choice == "1":
+                self.create_your_player()
+                while True:
+                    self.AB()
+                    cont = input("Continue to batting? (y/n): ")
+                    if cont.lower() != "y":
+                        break
+            elif choice == "2":
+                self.view_player_stats()
+            elif choice == "3":
+                print("Exiting game!")
+                break
+            else:
+                print("Invalid input. Choose a number: 1, 2, or 3")
